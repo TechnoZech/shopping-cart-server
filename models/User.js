@@ -1,9 +1,19 @@
-const mongoose = require('mongoose');
+// models/User.js
+const mongoose = require("mongoose");
 
-const userSchema = new mongoose.Schema({
-  email: { type: String, required: true, unique: true },
-  firebaseUid: { type: String, required: true, unique: true },
-  createdAt: { type: Date, default: Date.now },
+const CartItemSchema = new mongoose.Schema({
+	productId: { type: String, required: true },
+	name: { type: String, required: true },
+	price: { type: Number, required: true },
+	quantity: { type: Number, required: true },
+	image: { type: String, required: true },
 });
 
-module.exports = mongoose.model('User', userSchema);
+const UserSchema = new mongoose.Schema({
+	email: { type: String, required: true, unique: true },
+	firebaseUid: { type: String, required: true, unique: true },
+	cart: [CartItemSchema],
+	createdAt: { type: Date, default: Date.now },
+});
+
+module.exports = mongoose.model("User", UserSchema);
