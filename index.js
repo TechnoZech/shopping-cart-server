@@ -9,6 +9,7 @@ dotenv.config();
 // Import custom modules
 const initializeFirebaseAdmin = require("./config/firebase");
 const userRoutes = require("./routes/users");
+const cartRoutes = require('./routes/cart');
 
 // Initialize Express app
 const app = express();
@@ -35,6 +36,8 @@ mongoose
 
 // Routes
 app.use("/api/users", userRoutes);
+app.use('/api/cart', cartRoutes);
+
 app.get("/", function (req, res) {
 	res.send("server is working");
 });
